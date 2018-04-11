@@ -5,9 +5,11 @@ AspNetCore middleware which leverages the swagger doc schema information generat
 This json document can be imported into the postman client application providing pre-populated requests for any api controllers included in the swagger doc schema.
 
 ### Instalation
-**Note: This plugin requires that swashbuckle is first installed and configured in your aspnet core project**
+**Note: This plugin will install swashbuckle as a dependency and requires that you also configure it within your aspnet core project**
 
-1. Call the services.AddSwaggerToPostman() extension method in the ConfigureServices method of your applications Startup.cs after the services.AddSwaggerGen() is called for the Swashbuckle library.
+1. Install the latest version from [here on nuget](https://www.nuget.org/packages/Swashbuckle.SwaggerToPostman) **NOTE: This is an alpha version**
+
+2. Call the services.AddSwaggerToPostman() extension method in the ConfigureServices method of your applications Startup.cs after the services.AddSwaggerGen() is called for the Swashbuckle library.
 This will register the required types in the applications DI container.
 ```
   public void ConfigureServices(IServiceCollection services)
@@ -23,7 +25,7 @@ This will register the required types in the applications DI container.
 ```
 
 
-2. Call the app.UseSwaggerToPostman() extension method from the Configure method in your Startup.cs class after you call to app.UseSwagger(). 
+3. Call the app.UseSwaggerToPostman() extension method from the Configure method in your Startup.cs class after you call to app.UseSwagger(). 
 This will register the middleware in the api.net pipeline and expose a json document that can be imported by the postman http client.
 
    By default, the route to this document is `~/postman/{documentname}/collection.json` where document name is the name provided in the options when calling AddSwaggerGen(). In the example above the document name is `v1`.
